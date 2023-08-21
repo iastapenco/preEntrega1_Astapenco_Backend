@@ -14,4 +14,14 @@ cartsRouter.post("/", async (req, res) => {
   }
 });
 
+cartsRouter.get("/:cid", async (req, res) => {
+  const cId = parseInt(req.params.cid);
+  const products = await cartManager.getCartById(cId);
+  if (products) {
+    res.status(200).send(products);
+  } else {
+    res.status(404).send("Carrito no encontrado");
+  }
+});
+
 export default cartsRouter;

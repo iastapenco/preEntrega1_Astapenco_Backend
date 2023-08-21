@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 
 class CartManager {
-  constructor(path) {
+  constructor() {
     this.path = "./carts.json";
   }
 
@@ -13,7 +13,12 @@ class CartManager {
 
   async getCartById(id) {
     const cartsList = await this.getCarts();
-    return cartsList.find((cart) => (cart.id = id));
+    const cartById = cartsList.find((c) => c.id === id);
+    if (cartById) {
+      return cartById.products;
+    } else {
+      return "Carrito no encontrado";
+    }
   }
 
   async autoId() {
