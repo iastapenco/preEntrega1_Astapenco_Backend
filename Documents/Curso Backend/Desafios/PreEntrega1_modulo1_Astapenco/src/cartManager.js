@@ -41,6 +41,28 @@ class CartManager {
     };
     cartList.push(newCart);
     await fs.writeFile(this.path, JSON.stringify(cartList));
+    return newCart;
+  }
+
+  async addProductToCart(cid, pid) {
+    const cartsList = await this.getCarts();
+    const cart = cartsList.find((c) => c.id === cid);
+    if (cart) {
+      const prodIndex = cart.products.findIndex((prod) => prod.pid === pid);
+
+      if (prodIndex !== -1) {
+        cart.products[prodIndex].quantity++;
+      } else {
+        cart.products.push({
+          pid,
+          quantity: 1,
+        });
+      }
+      await fs.writeFile(this.path, JSON.stringify(cartsList));
+      return cart;
+    } else {
+      return "Error al agregar producto";
+    }
   }
 }
 
