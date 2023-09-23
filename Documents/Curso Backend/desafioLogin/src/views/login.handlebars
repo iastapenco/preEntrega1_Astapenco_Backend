@@ -1,0 +1,24 @@
+<h2 class="text-center">Inicia Sesión</h2>
+
+<form id="login_form"  method="POST">
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="inputEmail"
+      name="email"
+      aria-describedby="emailHelp"
+      placeholder="example@example.com"
+    />
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="your password" />
+  </div>
+  <div class="d-flex flex-column">
+    <button type="submit" class="btn btn-primary btn-lg align-self-center">Sign in</button>
+  </div>
+</form>
+
+
+<script src="/socket.io/socket.io.js"></script>
